@@ -1,0 +1,27 @@
+{
+  "name": "todo-list",
+  "description": "a to-do list",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "to",
+    "do",
+    "list"
+  ],
+  "authors": [
+    "Jacob Sharp"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.8.3",
+    "jquery": "~2.1.4"
+  }
+}

@@ -14,6 +14,12 @@ var page = {
   eventsInit: function(){
     $('form').on('submit', function(event){
       event.preventDefault();
+      if($('input[name="newToDo"]').val() === ""){
+        return;
+      }
+      if($('input[name="newToDo"]').val()[0] === " "){
+        return;
+      }
       var newToDo = {
         todoItem: $('input[name="newToDo"]').val(),
         isChecked: false
@@ -29,6 +35,7 @@ var page = {
       if(!found) {
         todoData.push(newToDo);
       }
+      $('input[name="newToDo"]').val("");
       $('.itemsLeft').html(todoData.length - page.checkCount() + " items left");
       $('.items').html('');
       page.stylesInit();

@@ -93,6 +93,7 @@ var page = {
         $('.active').addClass('bordered');
         $('.all').removeClass('bordered');
         $('.complete').removeClass('bordered');
+        $('.check').parent().removeClass('hidden');
         $('.check.checked').parent().addClass('hidden');
         page.checkComplete();
       }

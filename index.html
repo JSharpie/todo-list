@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>ToDo List</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="compile.css" media="screen" title="no title" charset="utf-8">
     <script type="text/html" id="todoTitleTemplate">
       <h2 class = "todoTitle"><%= title %></h2>
@@ -15,21 +16,26 @@
     </script>
   </head>
   <body>
-    <div class="container">
-      <form class="addItem" action="index.html" method="post">
-        <input type="text" name = "newToDo" placeholder="What do you need to do?">
-      </form>
+    <header>
+      <h1>Todos</h1>
+    </header>
+    <section class="pageContainer">
+      <div class="container">
+        <form class="addItem" action="index.html" method="post">
+          <input type="text" name = "newToDo" placeholder="What do you need to do?">
+        </form>
+      </div>
+      <div class="items"></div>
+      <nav>
+        <ul>
+          <li class = "itemsLeft"></li>
+          <li class = "filter all bordered">All</li>
+          <li class = "filter active">Active</li>
+          <li class = "filter complete">Complete</li>
+          <li class = "clearComplete">Clear Completed</li>
+        </ul>
+      </nav>
     </div>
-    <div class="items"></div>
-    <nav>
-      <ul>
-        <li class = "itemsLeft"></li>
-        <li class = "filter all">All</li>
-        <li class = "filter active">Active</li>
-        <li class = "filter complete">Complete</li>
-        <li class = "clearComplete">Clear Completed</li>
-      </ul>
-    </nav>
     <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
     <script src="bower_components/underscore/underscore.js" charset="utf-8"></script>
     <script src="data.js" charset="utf-8"></script>

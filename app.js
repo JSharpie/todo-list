@@ -8,8 +8,8 @@ var page = {
     page.eventsInit();
   },
   stylesInit: function(){
-    page.checkComplete();
     page.loadItemTemplate($('.items'), todoData, $('#todoListTemplate').html());
+    page.checkComplete();
   },
   eventsInit: function(){
     $('form').on('submit', function(event){
@@ -29,7 +29,6 @@ var page = {
       if(!found) {
         todoData.push(newToDo);
       }
-      page.loadNewItem($('.items'), newToDo, $('#todoListTemplate').html());
       $('.itemsLeft').html(todoData.length - page.checkCount() + " items left");
       $('.items').html('');
       page.stylesInit();
@@ -37,16 +36,10 @@ var page = {
     $('div').on('click', '.check', function(event){
       $(this).toggleClass('checked');
       $(this).siblings().toggleClass('crossed');
-      for(var i = 0; i < todoData.length; i++){
-        if($('.check:eq(' + i + ')').hasClass('checked')){
-          todoData[i].isChecked = true;
-        }
-        else{
-          todoData[i].isChecked = false;
-        }
-      }
+      page.checkedIt();
       $('.itemsLeft').html(todoData.length - page.checkCount() + " items left");
     });
+    //Gotta love my boy David Thomas for his tip on http://stackoverflow.com/questions/8548126/make-span-element-editable
     $('div').on('dblclick', '.todoListItem', function(event){
        $(this).attr('contentEditable', true).blur(function(){
         $(this).attr('contentEditable', false);
@@ -73,9 +66,9 @@ var page = {
         $('.active').removeClass('bordered');
         $('.complete').removeClass('bordered');
         for(var x = 0; x < todoData.length; x++){
-          page.checkComplete();
           page.loadNewItem($('.items'), todoData[x], $('#todoListTemplate').html());
         }
+        page.checkComplete();
       }
       if($(this).hasClass('active')){
         $('.active').toggleClass('bordered');
@@ -84,17 +77,22 @@ var page = {
         $('.items').html('');
         for(var i = 0; i < todoData.length; i++){
           if(todoData[i].isChecked === false){
+            if($('.check:eq(' + i + ')').hasClass('checked')){
+              $('.check:eq(' + i + ')').removeClass('checked');
+            }
             page.loadNewItem($('.items'), todoData[i], $('#todoListTemplate').html());
           }
         }
+        page.checkComplete();
       }
       if($(this).hasClass('complete')){
         $('.complete').toggleClass('bordered');
         $('.active').removeClass('bordered');
         $('.all').removeClass('bordered');
         for(var j = 0; j < todoData.length; j++){
-          if(!$('.check:eq(' + j + ')').hasClass('checked')){
-            $('.check:eq(' + j + ')').parent().toggleClass('hidden');
+          if(todoData[j].isChecked === false){
+            $('.check:eq(' + j + ')').addClass('checked');
+            $('.todoListItem:eq(' + j + ')').addClass('crossed');
           }
         }
       }
@@ -135,7 +133,17 @@ var page = {
         $('.todoListItem:eq(' + i + ')').addClass('crossed');
       }
     }
-}
+  },
+  checkedIt: function(){
+    for(var i = 0; i < todoData.length; i++){
+      if($('.check:eq(' + i + ')').hasClass('checked')){
+        todoData[i].isChecked = true;
+      }
+      else{
+        todoData[i].isChecked = false;
+      }
+    }
+  }
 };
 $(document).ready(function(){
   page.init();

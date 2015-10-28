@@ -76,3 +76,6 @@ p {
 
 .hidden {
   background-color: red; }
+
+.todoListItem br {
+  display: none; }

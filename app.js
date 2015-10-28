@@ -48,13 +48,28 @@ var page = {
     });
     //Gotta love my boy David Thomas for his tip on http://stackoverflow.com/questions/8548126/make-span-element-editable
     $('div').on('dblclick', '.todoListItem', function(event){
-       $(this).attr('contentEditable', true).blur(function(){
-        $(this).attr('contentEditable', false);
+       $(this).attr('contentEditable', true);
+       console.log(this);
+       $(this).on('keydown', function(event){
+         if(event.keyCode === 13){
+           $(this).attr('contentEditable', false);
+           for(var i = 0; i < todoData.length; i++){
+             todoData[i].todoItem = $('.todoListItem:eq(' + i + ')').text();
+          }
+         }
+         if($('.todoListItem').text() === ""){
+           $(this).parent().remove();
+           for(var j = todoData.length - 1; j>=0; j--) {
+             if(todoData[j].todoItem === "") {
+               todoData.splice(j, 1);
+             }
+           }
+         }
+       });
         for(var i = 0; i < todoData.length; i++){
           todoData[i].todoItem = $('.todoListItem:eq(' + i + ')').text();
        }
      });
-    });
     $('ul').on('click', '.clearComplete', function(event){
       console.log(this);
       for(var i = todoData.length - 1; i>=0; i--) {

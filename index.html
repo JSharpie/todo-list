@@ -2,17 +2,37 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="compile.css" media="screen" title="no title" charset="utf-8">
     <script type="text/html" id="todoTitleTemplate">
       <h2 class = "todoTitle"><%= title %></h2>
     </script>
     <script type="text/html" id="todoListTemplate">
-      <li class = "todoListItem"><%= todoItem %></li>
+      <div class = "listWrap">
+        <div class = "check"></div>
+        <li class = "todoListItem"><%= todoItem %></li>
+      </div>
     </script>
   </head>
   <body>
     <div class="container">
-
+      <form class="addItem" action="index.html" method="post">
+        <input type="text" name = "newToDo" placeholder="What do you need to do?">
+      </form>
     </div>
+    <div class="items"></div>
+    <nav>
+      <ul>
+        <li class = "itemsLeft"></li>
+        <li class = "all">All</li>
+        <li class = "active">Active</li>
+        <li class = "complete">Complete</li>
+        <li class = "clearComplete">Clear Completed</li>
+      </ul>
+    </nav>
+    <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
+    <script src="bower_components/underscore/underscore.js" charset="utf-8"></script>
+    <script src="data.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
   </body>
 </html>

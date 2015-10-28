@@ -32,20 +32,26 @@ li{
 }
 nav{
   vertical-align:bottom;
+  margin-top:40px;
   ul{
+    position:relative;
+    right:65px;
     width:500px;
     li{
       display:inline-block;
       cursor:pointer;
     }
     li:nth-child(1){
-      float:left;
+      position:relative;
+      right: 30px;
+      margin-right:30px;
     }
     li:nth-child(5){
       float:right;
     }
   }
 }
-.hidden{
-  display:none;
+.bordered{
+  border:1px solid gray;
+  border-radius:3%;
 }

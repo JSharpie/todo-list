@@ -60,40 +60,27 @@ var page = {
       page.stylesInit();
     });
     $('ul').on('click', '.filter', function(event){
-      $('.items').html('');
       if($(this).hasClass('all')){
-        $('.all').toggleClass('bordered');
+        $('.all').addClass('bordered');
         $('.active').removeClass('bordered');
         $('.complete').removeClass('bordered');
-        for(var x = 0; x < todoData.length; x++){
-          page.loadNewItem($('.items'), todoData[x], $('#todoListTemplate').html());
-        }
+        $('.check').parent().removeClass('hidden');
         page.checkComplete();
       }
       if($(this).hasClass('active')){
-        $('.active').toggleClass('bordered');
+        $('.active').addClass('bordered');
         $('.all').removeClass('bordered');
         $('.complete').removeClass('bordered');
-        $('.items').html('');
-        for(var i = 0; i < todoData.length; i++){
-          if(todoData[i].isChecked === false){
-            if($('.check:eq(' + i + ')').hasClass('checked')){
-              $('.check:eq(' + i + ')').removeClass('checked');
-            }
-            page.loadNewItem($('.items'), todoData[i], $('#todoListTemplate').html());
-          }
-        }
+        $('.check.checked').parent().addClass('hidden');
         page.checkComplete();
       }
       if($(this).hasClass('complete')){
-        $('.complete').toggleClass('bordered');
+        $('.complete').addClass('bordered');
         $('.active').removeClass('bordered');
         $('.all').removeClass('bordered');
-        for(var j = 0; j < todoData.length; j++){
-          if(todoData[j].isChecked === false){
-            $('.check:eq(' + j + ')').addClass('checked');
-            $('.todoListItem:eq(' + j + ')').addClass('crossed');
-          }
+        $('.check').parent().addClass('hidden');
+        if($('.check').hasClass('checked')){
+          $('.check.checked').parent().removeClass('hidden');
         }
       }
     });
@@ -137,6 +124,7 @@ var page = {
   checkedIt: function(){
     for(var i = 0; i < todoData.length; i++){
       if($('.check:eq(' + i + ')').hasClass('checked')){
+        console.log("yo");
         todoData[i].isChecked = true;
       }
       else{

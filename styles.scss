@@ -33,11 +33,9 @@ header{
   }
 }
 .pageContainer{
+  width: 80%;
+  margin: 0 auto;
   background-color:white;
-}
-.container, nav{
-  margin-left:20px;
-  width:100%;
 }
 .items{
   background-color:white;
@@ -45,10 +43,8 @@ header{
 .addItem{
   width:100%;
   input{
-    width: 104%;
-    position: relative;
+    width: 91%;
     padding-left:1%;
-    right: 36px;
     font-size: 30px;
     }
 }
@@ -57,14 +53,15 @@ header{
   margin-top:10px;
 }
 .checked{
-  background-color:black;
+  background-color:gray;
 }
 .crossed{
   text-decoration:line-through;
+  color:gray;
 }
 nav{
   ul{
-    margin-left:28%;
+    margin-left:25%;
     li{
       display:inline-block;
       cursor:pointer;
@@ -80,6 +77,9 @@ nav{
       margin-left:30px;
     }
   }
+}
+p{
+  text-align:center;
 }
 .bordered{
   border:1px solid gray;

@@ -64,6 +64,7 @@ var page = {
                todoData.splice(j, 1);
              }
            }
+           $('.itemsLeft').html(todoData.length - page.checkCount() + " items left");
          }
        });
         for(var i = 0; i < todoData.length; i++){
@@ -106,6 +107,7 @@ var page = {
           $('.check.checked').parent().removeClass('hidden');
         }
       }
+      $('.itemsLeft').html(todoData.length - page.checkCount() + " items left");
     });
   },
   // loadTitleTemplate: function($elem, data, tmpl){
